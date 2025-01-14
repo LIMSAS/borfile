@@ -3,7 +3,7 @@ with import <nixpkgs> { };
 let
   pythonPackages = python311Packages;
 in pkgs.mkShell rec {
-  name = "bor-tools";
+  name = "bor-file";
   venvDir = "./.venv";
 
   nativeBuildInputs = with pkgs; [
@@ -51,7 +51,7 @@ in pkgs.mkShell rec {
   # Run this command, only after creating the virtual environment
   postVenvCreation = ''
     unset SOURCE_DATE_EPOCH
-    make init
+    make init-dev
   '';
 
   # Now we can execute any commands within the virtual environment.

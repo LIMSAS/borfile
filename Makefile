@@ -25,9 +25,9 @@ help:  ## This help dialog.
 	done
 
 
-init:  ## Install the project in development mode (using virtualenv is highly recommended)
+init-dev:  ## Install the project in development mode (using virtualenv is highly recommended)
 	pip install -U setuptools pip
-	pip install -e .[test,dev,plot]
+	pip install -e .[test,dev,extra,plot]
 
 clean: clean-build clean-pyc clean-test  ## Remove all build, test, coverage and Python artifacts
 
