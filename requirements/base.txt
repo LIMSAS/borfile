@@ -1,6 +1,5 @@
 Click
 xarray
 scipy
-pint-pandas
 xmltodict
 stream-zip
