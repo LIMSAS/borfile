@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import stat
-import stream_zip
-from datetime import datetime
 import io
+import stat
+import tempfile
+from datetime import datetime
 from zipfile import ZipFile
 
-import xarray
+import stream_zip
 
-from .utils import dict_to_xml, xml_to_dict
+from .utils import dict_to_xml, open_dataset, xml_to_dict
 
 
 def read(bor_filename, **kwargs):
@@ -27,8 +27,16 @@ class BorFile:
         "Y": "DYNAMIC PROBING",
     }
 
-    def __init__(self, source_file, **kwargs):
+    def __init__(
+        self,
+        source_file,
+        netcdf_format="NETCDF3_CLASSIC",
+        netcdf_engine="scipy",
+        **kwargs
+    ):
         super(BorFile, self).__init__()
+        self._netcdf_format = netcdf_format
+        self._netcdf_engine = netcdf_engine
         self._source_file = source_file
         if hasattr(self._source_file, "read"):
             self._raw_bytes = self._source_file.read()
@@ -53,7 +61,9 @@ class BorFile:
     @property
     def data_nc(self):
         if hasattr(self, "_data"):
-            return self.to_dataset().to_netcdf(format="NETCDF3_CLASSIC")
+            return self.to_dataset().to_netcdf(
+                format=self._netcdf_format, engine=self._netcdf_engine
+            )
         else:
             return self._extract_file("data.nc")
 
@@ -121,7 +131,6 @@ class BorFile:
     def to_dataset(self, *args, **kwargs):
         df = self.data.reset_index(drop=False)
         ds = df.set_index("time").to_xarray()
-
         ds.encoding = {"unlimited_dims": {"time"}}
 
         for var in list(ds.variables):
@@ -129,7 +138,6 @@ class BorFile:
             ds[var].encoding["_FillValue"] = None
             if var in self._metadata:
                 ds[var].attrs = self._metadata[var]
-
         return ds
 
     def to_csv(self, *args, **kwargs):
@@ -150,10 +158,11 @@ class BorFile:
     def to_zarr(self, *args, **kwargs):
         return self.to_dataset().to_zarr(*args, **kwargs)
 
-    def _load_data(self):
-        ds = xarray.open_dataset(self.data_nc)
+    def _load_data(self, **kwargs):
+        ds = open_dataset(
+            self.data_nc, format=self._netcdf_format, engine=self._netcdf_engine
+        )
         self._data = ds.to_dataframe()
-        # self._data.reset_index(drop=False, inplace=True)
         self._metadata = {}
         for var in list(ds.variables):
             self._metadata[var] = ds.variables[var].attrs
