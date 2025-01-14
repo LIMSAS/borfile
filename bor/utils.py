@@ -37,4 +37,11 @@ def set_directory(path: Path):
 
 
 def open_dataset(data_nc, **kwargs):
-    return xarray.open_dataset(data_nc, **kwargs)
+    if kwargs.get("engine", None) == "netcdf4":
+        with tempfile.TemporaryDirectory() as outdir:
+            with set_directory(outdir):
+                with open("data.nc", "wb") as fd:
+                    fd.write(data_nc)
+                return xarray.open_dataset("data.nc", **kwargs)
+    else:
+        return xarray.open_dataset(data_nc, **kwargs)
