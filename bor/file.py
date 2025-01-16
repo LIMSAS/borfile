@@ -154,9 +154,11 @@ class BorFile:
         )
 
     def to_dict(self, *args, **kwargs):
+        kwargs.setdefault("orient", "records")
         return self.data.to_dict(*args, **kwargs)
 
     def to_json(self, *args, **kwargs):
+        kwargs.setdefault("orient", "records")
         return self.data.to_json(*args, **kwargs)
 
     def to_xml(self, *args, **kwargs):
