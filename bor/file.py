@@ -159,6 +159,7 @@ class BorFile:
 
     def to_json(self, *args, **kwargs):
         kwargs.setdefault("orient", "records")
+        kwargs.setdefault("double_precision", 2)
         return self.data.to_json(*args, **kwargs)
 
     def to_xml(self, *args, **kwargs):
