@@ -141,7 +141,17 @@ class BorFile:
         return ds
 
     def to_csv(self, *args, **kwargs):
-        return self.data.to_csv(*args, **kwargs)
+        rename_mapping = {}
+        for key, value in self.metadata.items():
+            if value.get("unit", None):
+                rename_mapping[key] = "{} ({})".format(key, value["unit"])
+
+        return (
+            self.data.reset_index(drop=False)
+            .rename(columns=rename_mapping)
+            .set_index(rename_mapping["time"])
+            .to_csv(*args, **kwargs)
+        )
 
     def to_dict(self, *args, **kwargs):
         return self.data.to_dict(*args, **kwargs)
