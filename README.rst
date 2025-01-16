@@ -107,7 +107,7 @@ You can export the data in any format supported by the pandas DataFrame class
 
   >>> bor_file.to_csv('/tmp/data.csv')
   >>> bor_file.to_json('/tmp/data.json')
-  >>> bor_file.to_zarr('/tmp/data.zarr.zip', mode='w')  # need pip install bor-file[extra]
+  >>> bor_file.to_zarr('/tmp/data.zarr', mode='w')  # need pip install bor-file[extra]
   >>> bor_file.to_xml('/tmp/data.xml')  # need pip install bor-file[extra]
   >>> bor_file.to_parquet('/tmp/data.parquet')  # need pip install bor-file[extra]
 
