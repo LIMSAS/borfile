@@ -25,6 +25,11 @@ if not version:
 
 extras_require = {key: get_requirements(key) for key in ["dev", "test"]}
 
+
+extras_require = {
+    key: get_requirements(key) for key in ["dev", "test", "extra", "plot"]
+}
+
 setup(
     name="bor-tools",
     version=version,
