@@ -155,12 +155,12 @@ class BorFile:
 
     def to_dict(self, *args, **kwargs):
         kwargs.setdefault("orient", "records")
-        return self.data.to_dict(*args, **kwargs)
+        return self.data.reset_index(drop=False).to_dict(*args, **kwargs)
 
     def to_json(self, *args, **kwargs):
         kwargs.setdefault("orient", "records")
         kwargs.setdefault("double_precision", 2)
-        return self.data.to_json(*args, **kwargs)
+        return self.data.reset_index(drop=False).to_json(*args, **kwargs)
 
     def to_xml(self, *args, **kwargs):
         return self.data.to_xml(*args, **kwargs)
