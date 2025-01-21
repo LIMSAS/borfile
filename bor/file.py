@@ -15,7 +15,6 @@ def read(bor_filename, **kwargs):
 
 
 class BorFile:
-
     _domains = {
         "D": "DRILLING PARAMETERS",
         "G": "GROUTING PARAMETERS",
@@ -167,6 +166,7 @@ class BorFile:
         return self.data.to_parquet(*args, **kwargs)
 
     def to_zarr(self, *args, **kwargs):
+        kwargs.setdefault("zarr_format", 2)
         return self.to_dataset().to_zarr(*args, **kwargs)
 
     def _load_data(self, **kwargs):
