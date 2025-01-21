@@ -29,3 +29,9 @@ def test_json_export(bor_file, tmp_path):
     json_output_filename = tmp_path / "output.json"
     bor_file.to_json(json_output_filename, indent=2)
     assert_same_files(json_output_filename, bor_file._source_file.with_suffix(".json"))
+
+
+def test_xml_export(bor_file, tmp_path):
+    xml_output_filename = tmp_path / "output.xml"
+    bor_file.to_xml(xml_output_filename)
+    assert_same_files(xml_output_filename, bor_file._source_file.with_suffix(".xml"))
