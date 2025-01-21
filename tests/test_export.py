@@ -3,6 +3,7 @@ import pytest
 from pytest_cases import pytest_fixture_plus
 
 import bor
+import xarray
 
 from . import INPUT_BOR_FILES, INPUT_FILES_DIR
 from .utils import assert_same_files
@@ -43,3 +44,10 @@ def test_parquet_export(bor_file, tmp_path):
     assert_same_files(
         parquet_output_filename, bor_file._source_file.with_suffix(".parquet")
     )
+
+
+def test_export_zarr(bor_file, tmp_path):
+    zarr_output_filename = tmp_path / "output.zarr.zip"
+    bor_file.to_zarr(zarr_output_filename, mode="w")
+    ds = xarray.open_zarr(zarr_output_filename)
+    xarray.testing.assert_equal(bor_file.to_dataset(), ds)
