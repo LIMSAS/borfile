@@ -35,3 +35,11 @@ def test_xml_export(bor_file, tmp_path):
     xml_output_filename = tmp_path / "output.xml"
     bor_file.to_xml(xml_output_filename)
     assert_same_files(xml_output_filename, bor_file._source_file.with_suffix(".xml"))
+
+
+def test_parquet_export(bor_file, tmp_path):
+    parquet_output_filename = tmp_path / "output.parquet"
+    bor_file.to_parquet(parquet_output_filename)
+    assert_same_files(
+        parquet_output_filename, bor_file._source_file.with_suffix(".parquet")
+    )
