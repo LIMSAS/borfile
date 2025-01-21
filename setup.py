@@ -31,7 +31,7 @@ extras_require = {
 }
 
 setup(
-    name="bor-tools",
+    name="bor-file",
     version=version,
     description="Small Python library to manipulate BOR files",
     keywords="bor",
