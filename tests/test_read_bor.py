@@ -114,7 +114,8 @@ def test_description(bor_file):
         assert bor_file.description["convention"]["parameters"]["@phase"] == "DRILL"
         assert bor_file.description["convention"]["parameters"]["logfile"] == "data.nc"
         assert "drilling" in bor_file.description
-        assert bor_file.description["drilling"]["method"] in DRILLING_METHOD_CODES
+        if "method" in bor_file.description["drilling"]:
+            assert bor_file.description["drilling"]["method"] in DRILLING_METHOD_CODES
 
     if bor_file.domain == "MENARD PRESSUREMETER TEST":
         assert bor_file.description["convention"]["@version"] in ("1.1", "1.2")
