@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description xmlns="http://www.lim.eu/description" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.lim.eu/description description.xsd">
+  <filename>50000240718103320P</filename>
+  <creation>2024-07-18T10:33:20+02:00</creation>
+  <modification>2024-07-18T10:43:53+02:00</modification>
+  <project_ref>Bor-Format</project_ref>
+  <borehole_ref>BH2</borehole_ref>
+  <operator>ROBERT</operator>
+  <device>
+    <serial>50000</serial>
+    <version>1.1</version>
+    <build>20230821</build>
+  </device>
+  <convention version="1.2">
+    <pressuremeter>
+      <cu_ref>CPVA500</cu_ref>
+      <thresholds>
+        <limit_volume unit="cm3">630</limit_volume>
+        <final_volume unit="cm3">550</final_volume>
+        <limit_pressure unit="bar">45.00</limit_pressure>
+        <final_pressure unit="bar">10.00</final_pressure>
+      </thresholds>
+      <stop_cause>MANUAL</stop_cause>
+      <pressure_loss>
+        <volume_loss_filename>50000240718101441P.bor</volume_loss_filename>
+        <logfile>data.nc</logfile>
+      </pressure_loss>
+    </pressuremeter>
+  </convention>
+</description>

@@ -1,0 +1,32 @@
+Mode auto : true
+Enreg. palier 0 bar : true
+Volume limite sonde : 630 cm3
+Pression limite sonde : 45.00 bar
+Fluage limite : 5 cm3
+Volume final essai : 550 cm3
+Pression finale essai : 39.00 bar
+Pdi purge surface : 3.00 bar
+PdiAjuste : 0.00 bar
+Offset : 196
+Tension 650cm3 : 0.700 volt
+Tension 100cm3 : 1.590 volt
+Réserve pression : 5 bar
+Vmin colonne : 700 cm3
+Plimite systeme : 160.00 bar
+Volume utile : 869 cm3
+Volume négatif : 56 cm3
+Numéro de série : CPVA519
+Tempo. enreg. : 1 s
+Tension limite : 1.85 volt
+statePRPLimSys : false
+statePGPLimSys : false
+statePIntPLimSys : false
+statePRPEnd : false
+statePGPEnd : false
+statePRPLim : false
+statePGPLim : false
+statePBPEnd : false
+stateVCorVEnd : true
+stateVCorVMax : false
+emergencyStop : false
+normalStop : false

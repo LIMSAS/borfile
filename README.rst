@@ -25,7 +25,7 @@ Usage
 .. code-block:: python
 
   >>> import bor
-  >>> bor_file = bor.read('./tests/data/59650240611100849D.bor')
+  >>> bor_file = bor.read('./tests/data/parameters/DRILL/59650240611100849D.bor')
 
 
 .. code-block:: python

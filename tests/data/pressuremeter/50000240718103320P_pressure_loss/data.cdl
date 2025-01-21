@@ -1,0 +1,86 @@
+netcdf data {
+dimensions:
+	time = UNLIMITED ; // (10 currently)
+variables:
+	float time(time) ;
+		time:unit = "s" ;
+		time:label = "time" ;
+	int STEP(time) ;
+		STEP:label = "Palier" ;
+	float PR1(time) ;
+		PR1:unit = "bar" ;
+		PR1:label = "PR1S" ;
+	float PR15(time) ;
+		PR15:unit = "bar" ;
+		PR15:label = "PR15S" ;
+	float PR30(time) ;
+		PR30:unit = "bar" ;
+		PR30:label = "PR30S" ;
+	float PR60(time) ;
+		PR60:unit = "bar" ;
+		PR60:label = "PR60S" ;
+	float PG1(time) ;
+		PG1:unit = "bar" ;
+		PG1:label = "PG1S" ;
+	float PG15(time) ;
+		PG15:unit = "bar" ;
+		PG15:label = "PG15S" ;
+	float PG30(time) ;
+		PG30:unit = "bar" ;
+		PG30:label = "PG30S" ;
+	float PG60(time) ;
+		PG60:unit = "bar" ;
+		PG60:label = "PG60S" ;
+	float V1(time) ;
+		V1:unit = "cm3" ;
+		V1:label = "V1S" ;
+	float V15(time) ;
+		V15:unit = "cm3" ;
+		V15:label = "V15S" ;
+	float V30(time) ;
+		V30:unit = "cm3" ;
+		V30:label = "V30S" ;
+	float V60(time) ;
+		V60:unit = "cm3" ;
+		V60:label = "V60S" ;
+		V60:scale_max = 500.f ;
+	float CREEP(time) ;
+		CREEP:unit = "cm3" ;
+		CREEP:label = "fluage" ;
+	float DELT60(time) ;
+		DELT60:unit = "cm3" ;
+		DELT60:label = "delt60" ;
+data:
+
+ time = 80, 141, 202, 263, 324, 386, 447, 509, 571, 632 ;
+
+ STEP = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ;
+
+ PR1 = 0.09, 0.09, 0.51, 0.65, 1.05, 1.07, 1.45, 1.78, 1.98, 2.11 ;
+
+ PR15 = 0.08, 0.09, 0.37, 0.59, 0.87, 1.05, 1.31, 1.61, 1.81, 2.06 ;
+
+ PR30 = 0.09, 0.12, 0.31, 0.58, 0.81, 1.05, 1.31, 1.56, 1.81, 2.06 ;
+
+ PR60 = 0.08, 0.06, 0.36, 0.56, 0.81, 1.05, 1.31, 1.56, 1.81, 2.07 ;
+
+ PG1 = 0.12, 0.11, 0.12, 0.12, 0.12, 0.25, 0.25, 0.6, 0.97, 1.02 ;
+
+ PG15 = 0.1, 0.12, 0.12, 0.12, 0.12, 0.25, 0.25, 0.58, 0.79, 1.02 ;
+
+ PG30 = 0.12, 0.11, 0.12, 0.12, 0.11, 0.25, 0.26, 0.58, 0.81, 1.03 ;
+
+ PG60 = 0.1, 0.12, 0.12, 0.12, 0.12, 0.25, 0.28, 0.58, 0.79, 1 ;
+
+ V1 = 18, 51, 58, 97, 137, 188, 242, 313, 397, 496 ;
+
+ V15 = 32, 51, 80, 113, 160, 208, 266, 342, 427, 527 ;
+
+ V30 = 45, 52, 88, 122, 171, 222, 282, 362, 451, 556 ;
+
+ V60 = 51, 52, 93, 131, 184, 238, 304, 391, 490, 603 ;
+
+ CREEP = 6, 0, 5, 9, 13, 16, 22, 29, 39, 47 ;
+
+ DELT60 = 51, 1, 41, 38, 53, 54, 66, 87, 99, 113 ;
+}
