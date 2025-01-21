@@ -82,8 +82,6 @@ class BorFile:
     @data.setter
     def data(self, df):
         self._data = df
-        if df.attrs:
-            self._metadata = df.attrs
 
     @property
     def domain(self):
@@ -179,7 +177,6 @@ class BorFile:
         self._metadata = {}
         for var in list(ds.variables):
             self._metadata[var] = ds.variables[var].attrs
-        self._data.attrs = self._metadata
 
     def _extract_file(self, filename, decode=False):
         zip_archive = ZipFile(io.BytesIO(self._raw_bytes))
