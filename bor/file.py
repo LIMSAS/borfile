@@ -4,6 +4,7 @@ import stat
 import tempfile
 from datetime import datetime
 from zipfile import ZipFile
+import decimal
 
 import stream_zip
 
@@ -143,6 +144,11 @@ class BorFile:
             if value.get("unit", None):
                 rename_mapping[key] = "{} ({})".format(key, value["unit"])
 
+        def float_format(x):
+            return round(decimal.Decimal(str(x)), 5).normalize().to_eng_string()
+
+        kwargs.setdefault("float_format", float_format)
+        kwargs.setdefault("header", True)
         return (
             self.data.reset_index(drop=False)
             .rename(columns=rename_mapping)
