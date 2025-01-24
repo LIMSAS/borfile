@@ -45,11 +45,14 @@ def bump_release_version(args):
     # clean.
     changelog = args.changelog.name
     bumpver = subprocess.check_output(
-        ["bumpversion", "release", "--dry-run", "--verbose"], stderr=subprocess.STDOUT
+        ["bump-my-version", "bump", "release", "--dry-run", "--verbose"],
+        stderr=subprocess.STDOUT,
     ).decode("utf-8")
-    m = re.search(r"current_version=.*?(\d+\.\d+\.\d+\.dev\d+|\d+\.\d+\.\d+)", bumpver)
+    m = re.search(r"current version.*?'(\d+\.\d+\.\d+\.dev\d+|\d+\.\d+\.\d+)'", bumpver)
     current_version = m.groups(0)[0]
-    m = re.search(r"new_version=.*?(\d+\.\d+\.\d+\.dev\d+|\d+\.\d+\.\d+)", bumpver)
+    m = re.search(
+        r"New version will be.*?'(\d+\.\d+\.\d+\.dev\d+|\d+\.\d+\.\d+)'", bumpver
+    )
     release_version = m.groups(0)[0]
 
     date = get_release_date()
@@ -80,7 +83,7 @@ def bump_release_version(args):
     )
 
     # Really run bumpver to set the new release and tag
-    bv_args = ["bumpversion", "release"]
+    bv_args = ["bump-my-version", "bump", "release"]
 
     bv_args += ["--new-version", release_version]
 
@@ -90,7 +93,7 @@ def bump_release_version(args):
 def bump_new_version(args):
     """Increment the version number to the next development version
 
-      * Bumps the development version number (with .bumpversion.cfg)
+      * Bumps the development version number (with .bumpversion.toml)
       * Preloads the correct changelog template for editing
 
     You can run it like::
@@ -104,14 +107,15 @@ def bump_new_version(args):
         $ python bumpversion.py newversion major
 
     which will create a 'major' release (0.0.2 => 1.0.0-dev)."""
-    pass
+
     # Dry run 'bumpversion' to find out what the new version number
     # would be. Useful side effect: exits if the working directory is not
     # clean.
     changelog = args.changelog.name
     part = args.part
     bumpver = subprocess.check_output(
-        ["bumpversion", part, "--dry-run", "--verbose"], stderr=subprocess.STDOUT
+        ["bump-my-version", "bump", part, "--dry-run", "--verbose"],
+        stderr=subprocess.STDOUT,
     ).decode("utf-8")
     m = re.search(r"current_version=.*?(\d+\.\d+\.\d+\.dev\d+|\d+\.\d+\.\d+)", bumpver)
     current_version = m.groups(0)[0]
@@ -147,7 +151,7 @@ def bump_new_version(args):
     )
 
     # Really run bumpver to set the new release and tag
-    bv_args = ["bumpversion", part, "--no-tag", "--new-version", next_version]
+    bv_args = ["bump-my-version", "bump", "--no-tag", "--new-version", next_version]
 
     subprocess.check_output(bv_args)
 
