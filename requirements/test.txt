@@ -4,5 +4,4 @@ pytest-cases
 pytest-cov
 pytest-datafiles
 pytest-sugar
-pytest-freezegun
 python-dateutil
