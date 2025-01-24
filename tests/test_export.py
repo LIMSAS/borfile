@@ -2,7 +2,7 @@
 import pytest
 from pytest_cases import pytest_fixture_plus
 
-import bor
+import borfile
 import xarray
 
 from . import INPUT_BOR_FILES, INPUT_FILES_DIR
@@ -16,7 +16,7 @@ from .utils import assert_same_files
 )
 def bor_file(request):
     if request.param.as_posix().lower().endswith(".bor"):
-        bor_file = bor.read(request.param)
+        bor_file = borfile.read(request.param)
         return bor_file
 
 

@@ -1,4 +1,4 @@
-BOR-File
+BOR File
 ========
 
 Small Python library to manipulate `BOR files`_
@@ -9,13 +9,13 @@ Installation
 Requirements:
   - python >= 3.8
 
-You can install, upgrade, uninstall bor-file with these commands::
+You can install, upgrade, uninstall borfile with these commands::
 
-  $ pip install bor-file
+  $ pip install borfile
 
 To add support of exporting data to other formats (such as .zarr, .parquet or .xml)::
 
-  $ pip install bor-file[extra]
+  $ pip install borfile[extra]
 
 Using a virtualenv may help overcome issues between python and your distribution.
 
@@ -24,22 +24,22 @@ Usage
 
 .. code-block:: python
 
-  >>> import bor
-  >>> bor_file = bor.read('./tests/data/parameters/DRILL/50000240718143044D/50000240718143044D.bor')
+  >>> import borfile
+  >>> bor = borfile.read('./tests/data/parameters/DRILL/50000240718143044D/50000240718143044D.bor')
 
 
 .. code-block:: python
 
-  >>> bor_file.domain
+  >>> bor.domain
   'DRILLING PARAMETERS'
 
 
 .. code-block:: python
 
-  >>> bor_file.description['borehole_ref']
+  >>> bor.description['borehole_ref']
   'TEST HOLE 1'
 
-  >>> bor_file.description['drilling']['method']
+  >>> bor.description['drilling']['method']
   'DRLMTD_RTR'
 
 BOR data can be used and edited as a `pandas DataFrame`_
@@ -49,7 +49,7 @@ BOR data can be used and edited as a `pandas DataFrame`_
   >>> import pandas
   >>> pandas.set_option('display.precision', 2)
   >>>
-  >>> bor_file.data
+  >>> bor.data
           DEPTH     AS  EVP  EVR     TP    IP     TQ   HP
   time
   0.0      7.71   0.00    0    0  53.20  0.00  41.60  0.0
@@ -68,7 +68,7 @@ BOR data can be used and edited as a `pandas DataFrame`_
 
 .. code-block:: python
 
-  >>> bor_file.data.describe()
+  >>> bor.data.describe()
            DEPTH       AS     EVP       EVR       TP       IP       TQ       HP
   count  1203.00  1203.00  1203.0  1.20e+03  1203.00  1203.00  1203.00  1203.00
   mean     13.86    14.53     0.0  5.82e-03    53.30     5.30    31.07     0.05
@@ -81,15 +81,15 @@ BOR data can be used and edited as a `pandas DataFrame`_
 
 .. code-block:: python
 
-  >>> bor_file.data.loc[:1]
+  >>> bor.data.loc[:1]
         DEPTH   AS  EVP  EVR    TP   IP    TQ   HP
   time
   0.0    7.71  0.0    0    0  53.2  0.0  41.6  0.0
 
 .. code-block:: python
 
-  >>> bor_file.data.loc[0, 'DEPTH'] = 7
-  >>> bor_file.data.loc[:1]
+  >>> bor.data.loc[0, 'DEPTH'] = 7
+  >>> bor.data.loc[:1]
         DEPTH   AS  EVP  EVR    TP   IP    TQ   HP
   time
   0.0     7.0  0.0    0    0  53.2  0.0  41.6  0.0
@@ -97,7 +97,7 @@ BOR data can be used and edited as a `pandas DataFrame`_
 .. code-block:: python
 
   >>> import matplotlib.pyplot as plt
-  >>> bor_file.data.set_index('DEPTH').plot.area(figsize=(16, 6), y=['AS', 'TP'], subplots=True)
+  >>> bor.data.set_index('DEPTH').plot.area(figsize=(16, 6), y=['AS', 'TP'], subplots=True)
 
 .. image:: docs/figure-example.png
 
@@ -105,23 +105,23 @@ You can export the data in any format supported by the pandas DataFrame class
 
 .. code-block:: python
 
-  >>> bor_file.to_csv('/tmp/data.csv')
-  >>> bor_file.to_json('/tmp/data.json')
-  >>> bor_file.to_zarr('/tmp/data.zarr', mode='w')  # need pip install bor-file[extra]
-  >>> bor_file.to_xml('/tmp/data.xml')  # need pip install bor-file[extra]
-  >>> bor_file.to_parquet('/tmp/data.parquet')  # need pip install bor-file[extra]
+  >>> bor.to_csv('/tmp/data.csv')
+  >>> bor.to_json('/tmp/data.json')
+  >>> bor.to_zarr('/tmp/data.zarr', mode='w')  # need pip install borfile[extra]
+  >>> bor.to_xml('/tmp/data.xml')  # need pip install borfile[extra]
+  >>> bor.to_parquet('/tmp/data.parquet')  # need pip install borfile[extra]
 
 Changes can be made persistent with the `save` method..
 
 .. code-block:: python
 
-  >>> bor_file.save()
+  >>> bor.save()
 
 ..or discarded with the `reset` method
 
 .. code-block:: python
 
-  >>> bor_file.reset()
+  >>> bor.reset()
 
 .. _`pandas DataFrame`: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html
 .. _`BOR files`: https://bor-form.at/en/

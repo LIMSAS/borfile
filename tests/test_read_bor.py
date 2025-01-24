@@ -4,7 +4,7 @@ from pathlib import Path
 import pytest
 from pytest_cases import pytest_fixture_plus
 
-import bor
+import borfile
 
 from . import INPUT_BOR_FILES, INPUT_FILES_DIR
 
@@ -16,7 +16,7 @@ from . import INPUT_BOR_FILES, INPUT_FILES_DIR
 )
 def bor_file(request):
     if request.param.as_posix().lower().endswith(".bor"):
-        return bor.read(request.param)
+        return borfile.read(request.param)
 
 
 def test_description(bor_file):
@@ -38,7 +38,8 @@ def test_description(bor_file):
         assert "drilling" in bor_file.description
         if "method" in bor_file.description["drilling"]:
             assert (
-                bor_file.description["drilling"]["method"] in bor.codes.DRILLING_METHOD
+                bor_file.description["drilling"]["method"]
+                in borfile.codes.DRILLING_METHOD
             )
 
     if bor_file.domain == "MENARD PRESSUREMETER TEST":
@@ -47,7 +48,7 @@ def test_description(bor_file):
         assert any(
             [
                 ptt in bor_file.description["convention"]["pressuremeter"]
-                for ptt in bor.codes.PRESSUREMETER_TEST_TYPES
+                for ptt in borfile.codes.PRESSUREMETER_TEST_TYPES
             ]
         )
 
@@ -79,13 +80,13 @@ def test_dataframe_parameters(bor_file):
         assert "DEPTH" in bor_file.data
         assert "time" in bor_file.data.reset_index(drop=False)
         for parameter in list(bor_file.data.columns):
-            assert parameter in bor.codes.DRILLING_PARAMETERS_LOG
+            assert parameter in borfile.codes.DRILLING_PARAMETERS_LOG
 
     if bor_file.domain == "MENARD PRESSUREMETER TEST":
         assert "STEP" in bor_file.data
         assert "time" not in bor_file.data
         for parameter in list(bor_file.data.columns):
-            assert parameter in bor.codes.PRESSUREMETER_LOG_NAMES
+            assert parameter in borfile.codes.PRESSUREMETER_LOG_NAMES
 
 
 def test_dataset_parameters(bor_file):
@@ -98,10 +99,10 @@ def test_dataset_parameters(bor_file):
         assert "DEPTH" in ds.data_vars
         assert "time" not in ds.data_vars
         for parameter in list(ds.data_vars):
-            assert parameter in bor.codes.DRILLING_PARAMETERS_LOG
+            assert parameter in borfile.codes.DRILLING_PARAMETERS_LOG
 
     if bor_file.domain == "MENARD PRESSUREMETER TEST":
         assert "STEP" in ds.data_vars
         assert "time" not in ds.data_vars
         for parameter in list(ds.data_vars):
-            assert parameter in bor.codes.PRESSUREMETER_LOG_NAMES
+            assert parameter in borfile.codes.PRESSUREMETER_LOG_NAMES

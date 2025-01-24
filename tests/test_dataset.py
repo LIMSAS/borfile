@@ -8,8 +8,8 @@ import xarray
 import xarray.testing
 from pytest_cases import pytest_fixture_plus
 
-import bor
-from bor.utils import open_dataset
+import borfile
+from borfile.utils import open_dataset
 
 from . import INPUT_BOR_FILES, INPUT_FILES_DIR
 
@@ -21,7 +21,7 @@ from . import INPUT_BOR_FILES, INPUT_FILES_DIR
 )
 def bor_file(request):
     if request.param.as_posix().lower().endswith(".bor"):
-        bor_file = bor.read(request.param)
+        bor_file = borfile.read(request.param)
         return bor_file
 
 

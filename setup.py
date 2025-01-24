@@ -16,31 +16,28 @@ def get_requirements(basename):
 
 version = re.search(
     r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
-    read_text("bor", "__init__.py"),
+    read_text("src", "borfile", "__init__.py"),
     re.MULTILINE,
 ).group(1)
 
 if not version:
     raise RuntimeError("Cannot find version information")
 
-extras_require = {key: get_requirements(key) for key in ["dev", "test"]}
-
-
 extras_require = {
     key: get_requirements(key) for key in ["dev", "test", "extra", "plot"]
 }
 
 setup(
-    name="bor-file",
+    name="borfile",
     version=version,
     description="Small Python library to manipulate BOR files",
     keywords="bor",
     long_description=read_text("README.rst") + "\n\n" + read_text("CHANGES.rst"),
-    url="https://github.com/LIMSAS/bor-file",
+    url="https://github.com/LIMSAS/borfile",
     author="Salem Harrache",
     author_email="dev@mail.lim.eu",
-    package_dir={"bor": "bor"},
-    packages=find_packages(),
+    packages=["borfile"],
+    package_dir={"": "src"},
     include_package_data=True,
     license="MIT license",
     zip_safe=False,

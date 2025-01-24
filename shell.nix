@@ -3,7 +3,7 @@ with import <nixpkgs> { };
 let
   pythonPackages = python311Packages;
 in pkgs.mkShell rec {
-  name = "bor-file";
+  name = "borfile";
   venvDir = "./.venv";
 
   nativeBuildInputs = with pkgs; [
