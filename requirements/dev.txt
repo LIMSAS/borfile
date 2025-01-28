@@ -1,7 +1,0 @@
-black
-bump-my-version
-flake8
-isort
-jedi
-pdbpp
-twine

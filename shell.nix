@@ -51,7 +51,7 @@ in pkgs.mkShell rec {
   # Run this command, only after creating the virtual environment
   postVenvCreation = ''
     unset SOURCE_DATE_EPOCH
-    make init-dev
+    make install
   '';
 
   # Now we can execute any commands within the virtual environment.

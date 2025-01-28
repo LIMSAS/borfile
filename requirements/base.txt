@@ -1,5 +1,0 @@
-Click
-xarray
-scipy
-xmltodict
-stream-zip
