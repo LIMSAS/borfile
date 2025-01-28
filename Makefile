@@ -25,9 +25,9 @@ help:  ## This help dialog.
 	done
 
 
-init-dev:  ## Install the project in development mode (using virtualenv is highly recommended)
-	pip install -U setuptools pip
-	pip install -e .[test,dev,extra,plot]
+install:  ## Install the project in development mode (using virtualenv is highly recommended)
+	pip install -U flit
+	flit install --symlink --extras=all
 
 clean: clean-build clean-pyc clean-test  ## Remove all build, test, coverage and Python artifacts
 
@@ -59,8 +59,11 @@ coverage: ## Check code coverage quickly with the default Python
 	coverage html
 	$(open) htmlcov/index.html
 
-dist: clean  ## Package
-	python3 setup.py sdist
+build: clean  ## Package
+	flit build
+
+publish: build  ## Package and upload a release
+	flit publish
 
 lint:  ## Check style with flake8
 	flake8 $(FLAKE8_WHITELIST)

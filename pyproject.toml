@@ -1,0 +1,114 @@
+[project]
+name = "borfile"
+authors = [{name = "Salem Harrache", email = "dev@mail.lim.eu"}]
+dynamic = ["version", "description"]
+readme = {file = "README.rst", content-type = "text/x-rst"}
+license = {file = "LICENSE"}
+classifiers = [
+        "Development Status :: 2 - Pre-Alpha",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "click",
+    "xarray",
+    "scipy",
+    "xmltodict",
+    "stream-zip",
+]
+
+[project.urls]
+Home = "https://bor-form.at"
+Source = "https://github.com/LIMSAS/borfile"
+Changes = "https://github.com/LIMSAS/borfile/blob/master/CHANGES.rst"
+
+[project.optional-dependencies]
+test = [
+    "coverage",
+    "pytest",
+    "pytest-cases",
+    "pytest-cov",
+    "pytest-datafiles",
+    "pytest-sugar",
+]
+extra = [
+    "lxml",
+    "pyarrow",
+    "zarr",
+]
+dev = [
+    "black",
+    "bump2version",
+    "flake8",
+    "isort",
+    "jedi",
+    "pdbpp",
+]
+plot = [
+    "jupyterlab",
+    "matplotlib",
+]
+
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "borfile"
+
+[tool.flit.sdist]
+include = [
+    "docs/",
+    "tests/",
+    "CHANGES.rst",
+    "README.rst",
+]
+
+[tool.distutils.bdist_wheel]
+universal = true
+
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+norecursedirs = ".git .tox venv env build"
+addopts = "--doctest-modules --tb native -r fxX --maxfail=100 --ignore=setup.py --ignore=scripts"
+doctest_optionflags = "NORMALIZE_WHITESPACE IGNORE_EXCEPTION_DETAIL ALLOW_UNICODE"
+filterwarnings = [
+    "ignore::DeprecationWarning"
+]
+
+[tool.bumpversion]
+current_version = "0.1.0"
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(\\.(?P<release>[a-z]+\\d+))?"
+serialize = [
+    "{major}.{minor}.{patch}.{release}",
+    "{major}.{minor}.{patch}"
+]
+search = "{current_version}"
+replace = "{new_version}"
+regex = false
+ignore_missing_version = false
+ignore_missing_files = false
+tag = true
+sign_tags = false
+tag_name = "v{new_version}"
+tag_message = "Bump version: {current_version} → {new_version}"
+allow_dirty = true
+commit = true
+message = "Bump version: {current_version} → {new_version}"
+commit_args = ""
+setup_hooks = []
+pre_commit_hooks = []
+post_commit_hooks = []
+
+[tool.bumpversion.parts.release]
+values = ["dev0", "gamma"]
+optional_value = "gamma"
+
+[[tool.bumpversion.files]]
+filename = "src/borfile/__init__.py"
