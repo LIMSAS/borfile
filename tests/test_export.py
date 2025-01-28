@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
-import pytest
+import xarray
 from pytest_cases import pytest_fixture_plus
 
 import borfile
-import xarray
 
-from . import INPUT_BOR_FILES, INPUT_FILES_DIR
+from . import INPUT_BOR_FILES
+from . import INPUT_FILES_DIR
 from .utils import assert_same_files
 
 

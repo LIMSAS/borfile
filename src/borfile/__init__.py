@@ -1,5 +1,7 @@
 """Small Python library to manipulate BOR files."""
-from .file import BorFile, read
-from . import codes
+
+from . import codes as codes
+from .file import BorFile as BorFile
+from .file import read as read
 
 __version__ = "0.1.0"

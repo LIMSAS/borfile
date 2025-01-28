@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 DRILLING_METHOD = {
     "DRLMTD_HA": "Auger",
     "DRLMTD_CFA": "Continuous flight auger",

@@ -44,7 +44,7 @@ extra = [
 dev = [
     "black",
     "bump2version",
-    "flake8",
+    "ruff",
     "isort",
     "jedi",
     "pdbpp",
@@ -112,3 +112,25 @@ optional_value = "gamma"
 
 [[tool.bumpversion.files]]
 filename = "src/borfile/__init__.py"
+
+[tool.ruff.lint]
+select = [
+    "B",  # flake8-bugbear
+    "E",  # pycodestyle error
+    "F",  # pyflakes
+    "I",  # isort
+    "UP",  # pyupgrade
+    "W",  # pycodestyle warning
+]
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
+#select = ["E4", "E7", "E9", "F"]
+ignore = []
+
+[tool.ruff.lint.extend-per-file-ignores]
+# Also ignore `E402` in all `__init__.py` files.
+"__init__.py" = ["F401"]
+"*.ipynb" = ["F401"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+order-by-type = false
