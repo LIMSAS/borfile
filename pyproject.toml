@@ -43,7 +43,7 @@ extra = [
 ]
 dev = [
     "black",
-    "bump2version",
+    "bump-my-version",
     "ruff",
     "isort",
     "jedi",
