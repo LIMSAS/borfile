@@ -1,13 +1,9 @@
-# -*- coding: utf-8 -*-
-import random
-from pathlib import Path
-
-import pytest
 from pytest_cases import pytest_fixture_plus
 
 import borfile
 
-from . import INPUT_BOR_FILES, INPUT_FILES_DIR
+from . import INPUT_BOR_FILES
+from . import INPUT_FILES_DIR
 
 
 @pytest_fixture_plus(
@@ -22,7 +18,7 @@ def bor_file(request):
 
 
 def test_edit_description(bor_file, request):
-    new_project_ref = "PROJECT REF {}".format(request.node.callspec.id)
+    new_project_ref = f"PROJECT REF {request.node.callspec.id}"
     assert new_project_ref not in bor_file.description_xml
 
     bor_file.description["project_ref"] = new_project_ref

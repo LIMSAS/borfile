@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
 import random
-from pathlib import Path
 
 import pandas.testing
-import pytest
 import xarray
 import xarray.testing
 from pytest_cases import pytest_fixture_plus
@@ -11,7 +8,8 @@ from pytest_cases import pytest_fixture_plus
 import borfile
 from borfile.utils import open_dataset
 
-from . import INPUT_BOR_FILES, INPUT_FILES_DIR
+from . import INPUT_BOR_FILES
+from . import INPUT_FILES_DIR
 
 
 @pytest_fixture_plus(
@@ -55,4 +53,4 @@ def test_compare_metadata(bor_file):
     assert hasattr(bor_file, "_metadata")
 
     for var in list(ds.variables):
-        ds[var].attrs == metadata[var]
+        assert ds[var].attrs == metadata[var]

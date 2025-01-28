@@ -1,14 +1,14 @@
-# -*- coding: utf-8 -*-
+import decimal
 import io
 import stat
-import tempfile
 from datetime import datetime
 from zipfile import ZipFile
-import decimal
 
 import stream_zip
 
-from .utils import dict_to_xml, open_dataset, xml_to_dict
+from .utils import dict_to_xml
+from .utils import open_dataset
+from .utils import xml_to_dict
 
 
 def read(bor_filename, **kwargs):
@@ -32,9 +32,9 @@ class BorFile:
         source_file,
         netcdf_format="NETCDF3_CLASSIC",
         netcdf_engine="scipy",
-        **kwargs
+        **kwargs,
     ):
-        super(BorFile, self).__init__()
+        super().__init__()
         self._netcdf_format = netcdf_format
         self._netcdf_engine = netcdf_engine
         self._source_file = source_file
