@@ -49,7 +49,7 @@ clean-test:  ## Eemove test and coverage artifacts
 	rm -fr htmlcov/
 
 test:  ## Run tests quickly with the default Python
-	pytest --cov=bor --cov-report html --cov-report term:skip-covered
+	pytest --cov=borfile --cov-report html --cov-report term:skip-covered
 
 coverage: ## Check code coverage quickly with the default Python
 	coverage erase
