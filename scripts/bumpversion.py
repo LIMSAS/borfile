@@ -75,7 +75,7 @@ def bump_release_version(args):
     editor = os.environ.get("EDITOR", "vim")
     os.system(f"{editor} {changelog}")
 
-    subprocess.check_output(["python", "setup.py", "sdist"])
+    subprocess.check_output(["flit", "build"])
 
     # Have to add it so it will be part of the commit
     subprocess.check_output(["git", "add", changelog])
@@ -116,9 +116,11 @@ def bump_new_version(args):
         ["bump-my-version", "bump", part, "--dry-run", "--verbose"],
         stderr=subprocess.STDOUT,
     ).decode("utf-8")
-    m = re.search(r"current_version=.*?(\d+\.\d+\.\d+\.dev\d+|\d+\.\d+\.\d+)", bumpver)
+    m = re.search(r"current version.*?'(\d+\.\d+\.\d+\.dev\d+|\d+\.\d+\.\d+)'", bumpver)
     current_version = m.groups(0)[0]
-    m = re.search(r"new_version=.*?(\d+\.\d+\.\d+\.dev\d+|\d+\.\d+\.\d+)", bumpver)
+    m = re.search(
+        r"New version will be.*?'(\d+\.\d+\.\d+\.dev\d+|\d+\.\d+\.\d+)'", bumpver
+    )
     next_version = m.groups(0)[0]
 
     current_version_title = generate_changelog_title(current_version)
@@ -140,8 +142,6 @@ def bump_new_version(args):
     # Tries to load the EDITOR environment variable, else falls back to vim
     editor = os.environ.get("EDITOR", "vim")
     os.system(f"{editor} {changelog}")
-
-    subprocess.check_output(["python", "setup.py", "sdist"])
 
     # Have to add it so it will be part of the commit
     subprocess.check_output(["git", "add", changelog])
