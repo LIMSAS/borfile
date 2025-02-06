@@ -1,8 +1,5 @@
 SHELL := /bin/bash
 
-# these files should pass flakes8
-FLAKE8_WHITELIST=$(shell find . -name "*.py" ! -path "./.venv/*" )
-
 open := $(shell { which xdg-open || which open; } 2>/dev/null)
 
 .PHONY: clean-pyc clean-build docs clean
@@ -66,7 +63,7 @@ publish: build  ## Package and upload a release
 	flit publish
 
 lint:  ## Check style with flake8
-	flake8 $(FLAKE8_WHITELIST)
+	ruff check
 
 bumpversion:  ## Bump the release version
 	@python3 scripts/bumpversion.py release
