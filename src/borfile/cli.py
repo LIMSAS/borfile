@@ -31,3 +31,25 @@ def convert_to_json(bor_input, output, compact, float_precision):
         print(bor.to_json(**dump_args))
     else:
         bor.to_json(output, output, **dump_args)
+
+
+@click.command()
+@click.argument("bor_input", type=click.File("rb"))
+@click.option(
+    "-o", "--output", type=click.Path(writable=True, dir_okay=False), required=False
+)
+@click.option(
+    "--headers/--no-headers",
+    is_flag=True,
+    default=True,
+    show_default=True,
+    help="Write out the column names",
+)
+def convert_to_csv(bor_input, output, headers):
+    """Convert BOR file to a CSV."""
+    bor = BorFile(bor_input)
+    dump_args = {"header": headers}
+    if not output:
+        print(bor.to_csv(**dump_args))
+    else:
+        bor.to_csv(output, output, **dump_args)
