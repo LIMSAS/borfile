@@ -1,4 +1,5 @@
 DRILLING_METHOD = {
+    "DRLMTD_AUG": "Auger",
     "DRLMTD_HA": "Auger",
     "DRLMTD_CFA": "Continuous flight auger",
     "DRLMTD_ADM": "Auger with drilling mud",
@@ -17,8 +18,16 @@ DRILLING_METHOD = {
     "DRLMTD_CPD": "Cable percussion drilling",
     "DRLMTD_VDS": "Vibro driven sampler",
     "DRLMTD_VD": "Vibration drilling",
+    "DRLMTD_VDT": "Vibro driven tube",
     "DRLMTD_VS": "Vibro-sinking",
     "DRLMTD_PS": "Push sampler",
+    "DRLMTD_OHD": "Open hole drilling",
+    "DRLMTD_PT": "Pushed tube",
+    "DRLMTD_TWT": "Thin wall tube, pushed",
+    "DRLMTD_DT": "Driven tube",
+    "DRLMTD_GRAB": "Grabbing Cable with grab",
+    "DRLMTD_TP": "Trial-pit",
+    "DRLMTD_SHFT": "Shaft",
 }
 
 DRILLING_TOOL = {
