@@ -57,6 +57,7 @@ plot = [
 [project.scripts]
 bor2json = "borfile.cli:convert_to_json"
 bor2csv = "borfile.cli:convert_to_csv"
+borfile = "borfile.cli:bor_dump"
 
 [build-system]
 requires = ["flit_core >=3.2,<4"]

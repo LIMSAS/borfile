@@ -53,3 +53,13 @@ def convert_to_csv(bor_input, output, headers):
         print(bor.to_csv(**dump_args))
     else:
         bor.to_csv(output, output, **dump_args)
+
+
+@click.command()
+@click.argument("bor_input", type=click.File("rb"))
+def bor_dump(bor_input):
+    """Dump BOR file."""
+    bor = BorFile(bor_input)
+    print(bor.description_xml)
+    print()
+    print(bor.data)
