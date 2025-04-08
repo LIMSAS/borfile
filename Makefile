@@ -22,9 +22,8 @@ help:  ## This help dialog.
 	done
 
 
-install:  ## Install the project in development mode (using virtualenv is highly recommended)
-	pip install -U flit
-	flit install --symlink --extras=all
+install:  ## Install the project in development mode
+	uv sync --all-extras
 
 clean: clean-build clean-pyc clean-test  ## Remove all build, test, coverage and Python artifacts
 
@@ -46,36 +45,28 @@ clean-test:  ## Eemove test and coverage artifacts
 	rm -fr htmlcov/
 
 test:  ## Run tests quickly with the default Python
-	pytest --cov=borfile --cov-report html --cov-report term:skip-covered
-
-coverage: ## Check code coverage quickly with the default Python
-	coverage erase
-	tox $(TOX)
-	coverage combine
-	coverage report --include=* -m
-	coverage html
-	$(open) htmlcov/index.html
+	uv run -- pytest --cov=borfile --cov-report html --cov-report term:skip-covered
 
 build: clean  ## Package
-	flit build
+	uv run -- flit build
 
 publish: build  ## Package and upload a release
-	flit publish
+	uv run -- flit publish
 
 lint:  ## Check style with flake8
-	ruff check
+	uv run -- ruff check
 
 bumpversion:  ## Bump the release version
-	@python3 scripts/bumpversion.py release
+	uv run -- python scripts/bumpversion.py release
 
 newversion-patch:  ## Set the new development version
-	@python3 scripts/bumpversion.py newversion patch
+	uv run -- python scripts/bumpversion.py newversion patch
 
 newversion-minor:  ## Set the new development version
-	@python3 scripts/bumpversion.py newversion minor
+	uv run -- python scripts/bumpversion.py newversion minor
 
 newversion-major:  ## Set the new development version
-	@python3 scripts/bumpversion.py newversion major
+	uv run -- python scripts/bumpversion.py newversion major
 
 jupyter:  ## Launch jupyter bo
-	jupyter lab
+	uv run -- jupyter lab
