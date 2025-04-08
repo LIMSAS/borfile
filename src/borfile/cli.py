@@ -62,4 +62,4 @@ def bor_dump(bor_input):
     bor = BorFile(bor_input)
     print(bor.description_xml)
     print()
-    print(bor.data)
+    print(bor.data.to_string())
