@@ -75,6 +75,7 @@ include = [
 ]
 exclude = [
     "docs/.ipynb_checkpoints",
+    "uv.lock",
 ]
 
 [tool.distutils.bdist_wheel]
