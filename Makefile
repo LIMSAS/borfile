@@ -48,7 +48,7 @@ test:  ## Run tests quickly with the default Python
 	uv run -- pytest --cov=borfile --cov-report html --cov-report term:skip-covered
 
 build: clean  ## Package
-	uv run -- flit build
+	uv run -- flit build --use-vcs
 
 publish: build  ## Package and upload a release
 	uv run -- flit publish
