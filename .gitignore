@@ -1,5 +1,4 @@
 *.py[cod]
-.ipynb_checkpoints/
 *~
 *.log
 *#
@@ -48,3 +47,7 @@ output/*/index.html
 docs/_build
 
 /.python-version
+
+# Jupyter playbooks
+*.ipynb
+!docs/example.ipynb
