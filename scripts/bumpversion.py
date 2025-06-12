@@ -6,9 +6,7 @@ import datetime
 import os
 import re
 import subprocess
-from argparse import ArgumentParser
-from argparse import FileType
-from argparse import RawTextHelpFormatter
+from argparse import ArgumentParser, FileType, RawTextHelpFormatter
 
 
 def generate_changelog_title(version):

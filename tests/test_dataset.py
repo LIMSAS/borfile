@@ -8,8 +8,7 @@ from pytest_cases import pytest_fixture_plus
 import borfile
 from borfile.utils import open_dataset
 
-from . import INPUT_BOR_FILES
-from . import INPUT_FILES_DIR
+from . import INPUT_BOR_FILES, INPUT_FILES_DIR
 
 
 @pytest_fixture_plus(

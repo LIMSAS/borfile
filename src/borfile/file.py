@@ -6,9 +6,7 @@ from zipfile import ZipFile
 
 import stream_zip
 
-from .utils import dict_to_xml
-from .utils import open_dataset
-from .utils import xml_to_dict
+from .utils import dict_to_xml, open_dataset, xml_to_dict
 
 
 def read(bor_filename, **kwargs):
