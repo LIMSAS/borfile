@@ -65,6 +65,9 @@ build-backend = "flit_core.buildapi"
 [tool.uv]
 exclude-newer = "7 days"
 
+[tool.uv.exclude-newer-package]
+jupyterlab = "2026-07-23T00:00:00Z"
+
 [tool.flit.module]
 name = "borfile"
 
