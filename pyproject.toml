@@ -29,7 +29,7 @@ Changes = "https://github.com/LIMSAS/borfile/blob/master/CHANGES.rst"
 [project.optional-dependencies]
 test = [
     "coverage",
-    "pytest",
+    "pytest<9.1",  # pytest-cases 3.10.1 breaks on pytest>=9.1 (IdMaker signature change)
     "pytest-cases",
     "pytest-cov",
     "pytest-datafiles",
