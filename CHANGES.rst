@@ -5,10 +5,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on `Keep a Changelog <http://keepachangelog.com/en/1.0.0/>`_, and this project adheres to `Semantic Versioning <http://semver.org/spec/v2.0.0.html>`_.
 
-Version 0.3.0.dev0
-------------------
+Version 0.3.0
+-------------
 
-**unreleased**
+Released on July 23rd 2026
 
 - Add missing drilling method codes
 - Drop Python 3.9 support (requires Python >= 3.10)
