@@ -57,6 +57,35 @@ def convert_to_csv(bor_input, output, headers):
 
 @click.command()
 @click.argument("bor_input", type=click.File("rb"))
+@click.option(
+    "-o", "--output", type=click.Path(writable=True, dir_okay=False), required=False
+)
+@click.option(
+    "--pretty/--no-pretty",
+    is_flag=True,
+    default=True,
+    show_default=True,
+    help="Indent the output for human readability",
+)
+@click.option(
+    "--index/--no-index",
+    is_flag=True,
+    default=True,
+    show_default=True,
+    help="Include the DataFrame index as an XML attribute",
+)
+def convert_to_xml(bor_input, output, pretty, index):
+    """Convert BOR file to a XML."""
+    bor = BorFile(bor_input)
+    dump_args = {"pretty_print": pretty, "index": index}
+    if not output:
+        print(bor.to_xml(**dump_args))
+    else:
+        bor.to_xml(output, **dump_args)
+
+
+@click.command()
+@click.argument("bor_input", type=click.File("rb"))
 def bor_dump(bor_input):
     """Dump BOR file."""
     bor = BorFile(bor_input)
