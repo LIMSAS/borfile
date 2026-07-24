@@ -11,6 +11,7 @@ Version 0.4.0.dev0
 **unreleased**
 
 - Add bor2xml cli to export bor to xml (requires ``pip install borfile[extra]``)
+- Fix bor2csv/bor2json crashing with a TypeError when using the -o option
 
 Version 0.3.0
 -------------

@@ -30,7 +30,7 @@ def convert_to_json(bor_input, output, compact, float_precision):
     if not output:
         print(bor.to_json(**dump_args))
     else:
-        bor.to_json(output, output, **dump_args)
+        bor.to_json(output, **dump_args)
 
 
 @click.command()
@@ -52,7 +52,7 @@ def convert_to_csv(bor_input, output, headers):
     if not output:
         print(bor.to_csv(**dump_args))
     else:
-        bor.to_csv(output, output, **dump_args)
+        bor.to_csv(output, **dump_args)
 
 
 @click.command()
