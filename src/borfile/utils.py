@@ -41,6 +41,8 @@ def open_dataset(data_nc, **kwargs):
             with set_directory(outdir):
                 with open("data.nc", "wb") as fd:
                     fd.write(data_nc)
-                return xarray.open_dataset("data.nc", **kwargs)
+                with xarray.open_dataset("data.nc", **kwargs) as ds:
+                    ds.load()
+                return ds
     else:
         return xarray.open_dataset(data_nc, **kwargs)

@@ -190,13 +190,11 @@ class BorFile:
         return self.to_dataset().to_zarr(*args, **kwargs)
 
     def _load_data(self, **kwargs):
-        ds = open_dataset(
+        with open_dataset(
             self.data_nc, format=self._netcdf_format, engine=self._netcdf_engine
-        )
-        self._data = ds.to_dataframe()
-        self._metadata = {}
-        for var in list(ds.variables):
-            self._metadata[var] = ds.variables[var].attrs
+        ) as ds:
+            self._data = ds.to_dataframe()
+            self._metadata = {var: ds.variables[var].attrs for var in ds.variables}
 
     def _extract_file(self, filename, decode=False):
         zip_archive = ZipFile(io.BytesIO(self._raw_bytes))
