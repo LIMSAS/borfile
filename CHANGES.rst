@@ -5,10 +5,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on `Keep a Changelog <http://keepachangelog.com/en/1.0.0/>`_, and this project adheres to `Semantic Versioning <http://semver.org/spec/v2.0.0.html>`_.
 
-Version 0.4.0.dev0
-------------------
+Version 0.4.0
+-------------
 
-**unreleased**
+Released on September 15th 2026
 
 - Add bor2xml cli to export bor to xml (requires ``pip install borfile[extra]``)
 - Fix bor2csv/bor2json crashing with a TypeError when using the -o option
