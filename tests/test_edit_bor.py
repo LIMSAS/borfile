@@ -54,22 +54,22 @@ def test_edit_dataframe(bor_file, request):
     assert len(bor_file.data.columns) == num_variables
 
 
-def test_columns_reflects_inplace_mutation(bor_file):
-    assert "TEST_COLUMN" not in bor_file.columns
+def test_parameters_reflects_inplace_mutation(bor_file):
+    assert "TEST_PARAMETER" not in bor_file.parameters
 
-    bor_file.data["TEST_COLUMN"] = 1
-    assert "TEST_COLUMN" in bor_file.columns
+    bor_file.data["TEST_PARAMETER"] = 1
+    assert "TEST_PARAMETER" in bor_file.parameters
 
 
-def test_columns_after_data_setter(bor_file):
+def test_parameters_after_data_setter(bor_file):
     variable_to_drop = list(bor_file.data.columns)[1]
 
     bor_file.data = bor_file.data.drop(columns=[variable_to_drop])
-    assert variable_to_drop not in bor_file.columns
+    assert variable_to_drop not in bor_file.parameters
 
 
-def test_columns_after_reset(bor_file):
-    columns_before = set(bor_file.columns)
+def test_parameters_after_reset(bor_file):
+    parameters_before = set(bor_file.parameters)
 
     bor_file.reset()
-    assert set(bor_file.columns) == columns_before
+    assert set(bor_file.parameters) == parameters_before

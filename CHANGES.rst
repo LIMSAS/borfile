@@ -12,6 +12,8 @@ Version 0.4.0.dev0
 
 - Add bor2xml cli to export bor to xml (requires ``pip install borfile[extra]``)
 - Fix bor2csv/bor2json crashing with a TypeError when using the -o option
+- Add ``BorFile.parameters`` to check parameter presence without loading the full dataframe
+- Fix netCDF file handles not being closed after loading data
 
 Version 0.3.0
 -------------

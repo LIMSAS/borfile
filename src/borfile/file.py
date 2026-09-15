@@ -80,21 +80,21 @@ class BorFile:
     @data.setter
     def data(self, df):
         self._data = df
-        self.__dict__.pop("_columns", None)
+        self.__dict__.pop("_parameters", None)
 
     @property
-    def columns(self):
+    def parameters(self):
         if hasattr(self, "_data"):
             return self._data.columns
 
-        if not hasattr(self, "_columns"):
+        if not hasattr(self, "_parameters"):
             with open_dataset(
                 self.data_nc, format=self._netcdf_format, engine=self._netcdf_engine
             ) as ds:
-                self._columns = frozenset(
+                self._parameters = frozenset(
                     name for name in ds.variables if name not in ds.indexes
                 )
-        return self._columns
+        return self._parameters
 
     @property
     def domain(self):
@@ -138,7 +138,7 @@ class BorFile:
         self.__dict__.pop("_data", None)
         self.__dict__.pop("_metadata", None)
         self.__dict__.pop("_description", None)
-        self.__dict__.pop("_columns", None)
+        self.__dict__.pop("_parameters", None)
 
     def to_dataset(self, *args, **kwargs):
         df = self.data.reset_index(drop=False)

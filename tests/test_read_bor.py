@@ -104,14 +104,14 @@ def test_dataset_parameters(bor_file):
             assert parameter in borfile.codes.PRESSUREMETER_LOG_NAMES
 
 
-def test_columns(bor_file):
-    assert set(bor_file.columns) == set(bor_file.data.columns)
-    assert "time" not in bor_file.columns
+def test_parameters(bor_file):
+    assert set(bor_file.parameters) == set(bor_file.data.columns)
+    assert "time" not in bor_file.parameters
 
 
-def test_columns_without_loading_data(bor_file):
+def test_parameters_without_loading_data(bor_file):
     fresh_bor_file = borfile.read(bor_file._source_file)
-    columns = fresh_bor_file.columns
+    parameters = fresh_bor_file.parameters
 
     assert not hasattr(fresh_bor_file, "_data")
-    assert columns == set(fresh_bor_file.data.columns)
+    assert parameters == set(fresh_bor_file.data.columns)
