@@ -1,0 +1,4 @@
+tests/data/
+docs/*.png
+docs/.ipynb_checkpoints/
+uv.lock
